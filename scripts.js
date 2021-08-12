@@ -16,9 +16,17 @@ const updateButton = () => {
   video.paused ? toggle.textContent = "►" : toggle.textContent = "||";
 }
 
+function skip () {
+  let skippingTime = parseFloat(this.dataset.skip);
+  video.currentTime += skippingTime;
+}
+
 
 // Hook up the event listeners
 video.addEventListener("click", togglePlay);
 video.addEventListener("play", updateButton);
 video.addEventListener("pause", updateButton);
 toggle.addEventListener("click", togglePlay);
+for (let i = 0; i < skipButtons.length; i++) {
+  skipButtons[i].addEventListener("click", skip);
+}
